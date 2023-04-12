@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node Blog</title>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <script src="assets/scripts/blogAdd.js" defer=""></script>
+  </head>
+  <body>
+    <nav>
+      <h1>Node Blog</h1>
+      <ul>
+        <li><a href="/">Anasayfa</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+    <section id="new-post">
+      <form class="blog-add-form" action="/admin/add" method="post">
+        <input class="blog" type="text" id="title" name="title" placeholder="Başlık" required="" />
+        <input class="blog" type="text" id="short" name="short" placeholder="Açıklama" required="" />
+        <input class="blog" type="text" id="long" name="long" placeholder="İçerik" required="" />
+        <input type="submit" value="Kaydet" />
+      </form>
+    </section>
+  </body>
+</html>
