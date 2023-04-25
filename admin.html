@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node Blog</title>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+  </head>
+  <body>
+    <nav>
+      <h1>Node Blog</h1>
+      <ul>
+        <li><a href="/">Anasayfa</a></li>
+        <li><a href="/about">Hakkımızda</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+    <section>
+      <a href="/admin/add">Ekle</a>
+      <h1>Yazılar</h1>
+      <li>
+        <p>Title</p>
+        <a class="del" data-doc="">Sil</a>
+      </li>
+    </section>
+    <script>
+      const del = document.querySelectorAll('a.del');
+      const delLinks = [].slice.call(del);
+
+      delLinks.forEach((item, i) => {
+        item.addEventListener('click', (e) => {
+          const endPoint = `/admin/delete/${item.dataset.doc}`;
+
+          fetch(endPoint, {
+            method: 'DELETE',
+          })
+            .then((result) => result.json())
+            .then((data) => (window.location.href = data.link))
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
