@@ -1,37 +1,46 @@
-class BlogAdder{
-    constructor() {
-        const blogAddForm = document.querySelector('#new-post form')
+const userSignForm = document.querySelector('#form-signup');
+const blogAddForm = document.querySelector('#new-post')
 
-        blogAddForm.addEventListener('submit', this.findBlogAdderHandler.bind(this));
-    }
 
-    findBlogAdderHandler(event) {
-        event.preventDefault();
-        
-        const enteredTitle = event.currentTarget.querySelector('#title').value;
-        const enteredShortContent = event.currentTarget.querySelector('#short').value;
-        const enteredLongContent = event.currentTarget.querySelector('#long').value;
-        
-        fetch('http://localhost:3000/admin/add', {
-            method: 'POST',
-            body: JSON.stringify({
-                title: enteredTitle,
-                short: enteredShortContent,
-                long: enteredLongContent,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-              },
-        }).then((response) => {
-            return response.json();
-        })
-    }
-}
+blogAddForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-const blogAdder = new BlogAdder();
+    const enteredTitle = event.currentTarget.querySelector('#title').value;
+    const enteredShortContent = event.currentTarget.querySelector('#short').value;
+    const enteredLongContent = event.currentTarget.querySelector('#long').value;
 
-// const url = new URL(location.href)
-// const queryParams = url.searchParams;
+    fetch('http://localhost:3000/admin/add', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: enteredTitle,
+            short: enteredShortContent,
+            long: enteredLongContent,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
+        return response.json();
+    })
 
-// const locId = queryParams.post('add');
-// fetch('http://localhost:3000/add/' + locId)
+})
+userSignForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const enteredUserName = event.currentTarget.querySelector('#username').value;
+    const enteredUserPassword = event.currentTarget.querySelector('#password').value;
+
+    fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        body: JSON.stringify({
+            userName: enteredUserName,
+            password: enteredUserPassword,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => {
+        return response.json();
+    })
+
+})

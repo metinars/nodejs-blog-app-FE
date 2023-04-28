@@ -33,8 +33,8 @@ const pages = [
     </ul>`,
     },
     {
-        pageName: '/add',
-        pageContent: `<form class="blog-add-form" action="/admin/add" method="post">
+      pageName: '/admin/add',
+      pageContent: `<form id="new-post" class="blog-add-form" action="/admin/add" method="post">
     <input class="blog" type="text" id="title" name="title" placeholder="Başlık" required="" />
     <input class="blog" type="text" id="short" name="short" placeholder="Açıklama" required="" />
     <input class="blog" type="text" id="long" name="long" placeholder="İçerik" required="" />
@@ -74,15 +74,16 @@ const pages = [
         pageContent: ``
     },
     {
-        pageName: '/signup',
-        pageContent: `<form action="" method="post">
+      pageName: '/signup',
+      pageContent: `<form id="form-signup" action="/signup" method="post">
         <input
           type="text"
+          id="username"
           name="username"
           placeholder="Kullanıcı Adı"
           required
         />
-        <input type="password" name="password" placeholder="Parola" required />
+        <input type="password" id="password" name="password" placeholder="Parola" required />
         <input type="submit" value="Kayıt" />
       </form>`
     }
