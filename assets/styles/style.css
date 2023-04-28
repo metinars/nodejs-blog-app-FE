@@ -31,3 +31,12 @@ form input{
     margin-top: 10px;
     padding: 5px 10px;
 }
+
+form a{
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #E5E5E5;
+    border-radius: 2px;
+    border-color: #000;
+    text-align: center;
+}
