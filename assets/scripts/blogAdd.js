@@ -1,4 +1,5 @@
 const userSignForm = document.querySelector('#form-signup');
+const userLoginForm = document.querySelector('#form-login');
 const blogAddForm = document.querySelector('#new-post')
 
 if (blogAddForm) {
@@ -33,10 +34,10 @@ if (userSignForm) {
         const enteredUserName = event.currentTarget.querySelector('#username').value;
         const enteredUserPassword = event.currentTarget.querySelector('#password').value;
 
-        fetch('http://localhost:3000/signup', {
+        fetch('http://localhost:3000/register', {
             method: 'POST',
             body: JSON.stringify({
-                userName: enteredUserName,
+                username: enteredUserName,
                 password: enteredUserPassword,
             }),
             headers: {
@@ -46,6 +47,28 @@ if (userSignForm) {
             return response.json();
         })
 
+    })
+}
+
+if (userLoginForm) {
+    userLoginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const enteredLoginUserName = event.currentTarget.querySelector('#username').value;
+        const enteredLoginUserPassword = event.currentTarget.querySelector('#password').value;
+
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: enteredLoginUserName,
+                password: enteredLoginUserPassword,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then((response) => {
+            return response.json();
+        })
     })
 }
 

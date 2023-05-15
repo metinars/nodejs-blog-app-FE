@@ -43,15 +43,17 @@ const pages = [
     },
     {
         pageName: '/login',
-        pageContent: `<form action="" method="post">
+      pageContent: `<form id="form-login" action="/login" method="post">
         <input
           type="text"
+          id="username"
           name="username"
           placeholder="Kullanıcı Adı"
           required=""
         />
         <input
           type="password"
+          id="password"
           name="password"
           placeholder="Parola"
           required=""
@@ -75,7 +77,7 @@ const pages = [
     },
     {
       pageName: '/signup',
-      pageContent: `<form id="form-signup" action="/signup" method="post">
+      pageContent: `<form id="form-signup" action="/register" method="post">
         <input
           type="text"
           id="username"
