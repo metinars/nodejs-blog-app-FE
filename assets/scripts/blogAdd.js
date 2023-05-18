@@ -44,6 +44,7 @@ if (userSignForm) {
                 'Content-Type': 'application/json',
             },
         }).then((response) => {
+            window.location.href = 'http://localhost:1234/login';
             return response.json();
         })
 
@@ -67,6 +68,7 @@ if (userLoginForm) {
                 'Content-Type': 'application/json',
             },
         }).then((response) => {
+            window.location.href = 'http://localhost:1234/admin';
             return response.json();
         })
     })
