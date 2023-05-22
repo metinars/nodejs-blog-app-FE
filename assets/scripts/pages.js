@@ -1,7 +1,7 @@
 const pages = [
-    {
-        pageName: '/',
-        pageContent: `<h1>Yazılar</h1>
+  {
+    pageName: '/',
+    pageContent: `<h1>Yazılar</h1>
     <ul>
       <li>
         <a href="">Lorem, ipsum dolor.</a>
@@ -31,19 +31,19 @@ const pages = [
         </p>
       </li>
     </ul>`,
-    },
-    {
-      pageName: '/admin/add',
-      pageContent: `<form id="new-post" class="blog-add-form" action="/admin/add" method="post">
+  },
+  {
+    pageName: '/admin/add',
+    pageContent: `<form id="new-post" class="blog-add-form" action="/admin/add" method="post">
     <input class="blog" type="text" id="title" name="title" placeholder="Başlık" required="" />
     <input class="blog" type="text" id="short" name="short" placeholder="Açıklama" required="" />
     <input class="blog" type="text" id="long" name="long" placeholder="İçerik" required="" />
     <input type="submit" value="Kaydet" />
   </form>`,
-    },
-    {
-        pageName: '/login',
-      pageContent: `<form id="form-login" action="/login" method="post">
+  },
+  {
+    pageName: '/login',
+    pageContent: `<form id="form-login" action="/login" method="post">
         <input
           type="text"
           id="username"
@@ -60,24 +60,23 @@ const pages = [
         />
         <a href="/signup">Signup</a>
         <input type="submit" value="Login" />
-      </form>`
-    },
-    {
-        pageName: '/admin',
-        pageContent: `<a href="/admin/add">Ekle</a>
-        <h1>Yazılar</h1>
-        <li>
-          <p>Title</p>
-          <a class="del" data-doc="">Sil</a>
-        </li>`
-    },
-    {
-        pageName: '/blog',
-        pageContent: ``
-    },
-    {
-      pageName: '/signup',
-      pageContent: `<form id="form-signup" action="/register" method="post">
+      </form>`,
+  },
+  {
+    pageName: '/admin',
+    pageContent: `<a href="/admin/add">Ekle</a>
+        <h1">Yazılar</h1>
+          <ul class="posts">
+            
+          </ul>`,
+  },
+  {
+    pageName: '/blog',
+    pageContent: ``,
+  },
+  {
+    pageName: '/signup',
+    pageContent: `<form id="form-signup" action="/register" method="post">
         <input
           type="text"
           id="username"
@@ -87,6 +86,6 @@ const pages = [
         />
         <input type="password" id="password" name="password" placeholder="Parola" required />
         <input type="submit" value="Kayıt" />
-      </form>`
-    }
+      </form>`,
+  },
 ];
