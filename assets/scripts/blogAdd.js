@@ -22,6 +22,7 @@ if (blogAddForm) {
         'Content-Type': 'application/json',
       },
     }).then((response) => {
+      window.location.href = 'http://localhost:1234/admin';
       return response.json();
     });
   });
@@ -73,9 +74,7 @@ if (userLoginForm) {
     const jsonData = await response.json();
     if (response.status === 201) {
       window.location.href = 'http://localhost:1234/admin';
-      document.cookie = `${jsonData.user.username}=${JSON.stringify(
-        jsonData.token
-      )}`;
+      document.cookie = `jwt=${JSON.stringify(jsonData.token)}`;
       console.log(jsonData.user.username);
       return jsonData;
     } else {
@@ -84,13 +83,72 @@ if (userLoginForm) {
   });
 }
 
-const blogPostAdder = (title, short, long) => {};
+const blogPostAdder = (postsAll) => {
+  const postelement = document.querySelector('.posts');
+
+  postsAll.forEach((element) => {
+    let post = `<li>
+                  <a class="post-title" data-doc="${element._id}" href="detail/${element._id}">${element.title}</a>
+                    <p>${element.short}</p>
+                    <a class="del" data-doc="${element._id}">Sil</a>
+                </li>`;
+    postelement.insertAdjacentHTML('afterbegin', post);
+  });
+  const detailSelector = document.querySelector('.post-title');
+  const deletePostSelector = document.querySelector('.del');
+
+  detailSelector.addEventListener('click', (event) => {
+    const dataDoc = detailSelector.getAttribute('data-doc');
+
+    getDetailPost(dataDoc);
+  });
+
+  deletePostSelector.addEventListener('click', (event) => {
+    const delDataDoc = deletePostSelector.getAttribute('data-doc');
+    deletePost(delDataDoc);
+  });
+};
+
+const blogPostDetailAdder = (postDetail) => {};
+
+async function deletePost(dataDoc) {
+  const deletePostRes = await fetch(
+    'http://localhost:3000/admin/delete/' + dataDoc,
+    {
+      method: 'DELETE',
+    }
+  );
+  const jsonDeletePost = await deletePostRes.json();
+
+  if (deletePostRes.status === 200) {
+    location.reload();
+    return jsonDeletePost;
+  } else {
+    alert(deletePostRes.statusText);
+  }
+}
+
+async function getDetailPost(dataDoc) {
+  const postDetailRes = await fetch(
+    'http://localhost:3000/admin/getDetail/' + dataDoc
+  );
+  const jsonPostDetailData = await postDetailRes.json();
+
+  if (postDetailRes.status === 200) {
+    blogPostDetailAdder(jsonPostDetailData.getDetailPost);
+    console.log(jsonPostDetailData.getDetailPost);
+    return jsonPostDetailData;
+  } else {
+    alert(postDetailRes.statusText);
+  }
+}
 
 async function getAllPosts() {
   const response = await fetch('http://localhost:3000/admin/getAll');
   const jsonResData = await response.json();
 
   if (response.status === 200) {
+    blogPostAdder(jsonResData.getAllPosts);
     return jsonResData;
   } else {
     alert(response.statusText);
@@ -101,3 +159,21 @@ if (pathName == '/admin') {
   getAllPosts();
 }
 
+async function logout() {
+  console.log('test1');
+  const response = await fetch('http://localhost:3000/logout');
+  const jsonResData = await response.json();
+
+  if (response.status === 200) {
+    console.log('testt');
+    document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    window.location.href = 'http://localhost:1234' + jsonResData.path;
+    return jsonResData;
+  } else {
+    alert(response.statusText);
+  }
+}
+
+if (pathName == '/logout') {
+  logout();
+}

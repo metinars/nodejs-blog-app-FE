@@ -65,14 +65,14 @@ const pages = [
   {
     pageName: '/admin',
     pageContent: `<a href="/admin/add">Ekle</a>
-        <h1">Yazılar</h1>
+        <h1>Yazılar</h1>
           <ul class="posts">
-            
           </ul>`,
   },
   {
-    pageName: '/blog',
-    pageContent: ``,
+    pageName: '/detail/',
+    pageContent: `<h1><%=blog.title%></h1>
+    <p><%=blog.long%></p>`,
   },
   {
     pageName: '/signup',
