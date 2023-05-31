@@ -13,3 +13,9 @@ const contentHandler = (pathName) => {
   }
 }
 contentHandler(pathName);
+
+if (document.cookie) {
+  document.querySelector('.nav-list').classList.remove('inactive');
+} else {
+  document.querySelector('.nav-list').classList.add('inactive');
+}
